@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Mr丶周 on 2016/12/6.
  */
 @Controller
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class UserController {
 	@Autowired
 	private UserDaoI userDao;
@@ -30,9 +30,8 @@ public class UserController {
 			System.out.println(user.getRealname());
 		// 将所有记录传递给要返回的jsp页面，放在userList当中
 		modelMap.addAttribute("userList", userList);
-		modelMap.addAttribute("test","test");
 		// 返回pages目录下的admin/users.jsp页面
-		return "/index";
+		return "userManage";
 	}
 
 }
