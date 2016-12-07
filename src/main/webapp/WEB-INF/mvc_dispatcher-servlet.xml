@@ -31,6 +31,27 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <bean id="loginInterceptor" class="com.mask.interceptor.LoginInterceptor">
+                <property name="excludeUrls">
+                    <value>/index</value>
+                    <!--<value>/</value>-->
+                </property>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <bean id="handlerExceptionResolver"
+          class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!--redirect:/index-->
+                <prop key="com.mask.exception.WebAuthException">/login</prop>
+            </props>
+        </property>
+    </bean>
     <!-- 表示JPA Repository所在的包 -->
     <jpa:repositories base-package="com.mask.dao"/>
 
@@ -46,5 +67,4 @@
 
     <!-- 开启事务管理注解 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
-
 </beans>
