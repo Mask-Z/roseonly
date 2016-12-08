@@ -2,6 +2,7 @@ package com.mask.bean;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 /**
  * Created by Mr丶周 on 2016/12/6.
@@ -13,6 +14,7 @@ public class Cart {
 	private Integer amount;
 	private Date addtime;
 	private User userByUserId;
+	private Collection<Flower> flowersById;
 
 	@Id
 	@Column(name = "id", nullable = false)
@@ -86,5 +88,14 @@ public class Cart {
 
 	public void setUserByUserId(User userByUserId) {
 		this.userByUserId = userByUserId;
+	}
+
+	@OneToMany(mappedBy = "cartByCartId")
+	public Collection<Flower> getFlowersById() {
+		return flowersById;
+	}
+
+	public void setFlowersById(Collection<Flower> flowersById) {
+		this.flowersById = flowersById;
 	}
 }
