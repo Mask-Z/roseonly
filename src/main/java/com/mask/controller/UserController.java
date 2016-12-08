@@ -20,7 +20,7 @@ public class UserController {
 	private UserDaoI userDao;
 	@RequestMapping("/")
 	public String index(){
-		return "index";
+		return "login";
 	}
 	@RequestMapping(value = "/userLists", method = RequestMethod.GET)
 	public String getUsers(ModelMap modelMap) {
