@@ -22,4 +22,7 @@ public interface UserDaoI extends JpaRepository<User, Integer> {
 			",us.number=:qnumber,us.realname=:qrealname where us.id=:qId")
 	public void updateUser(@Param("qname") String name, @Param("qpassword") String password, @Param("qcity") String city, @Param("qgender") String gender,
 						   @Param("qnumber") String number, @Param("qrealname") String realname, @Param("qId") Integer id);
+
+	@Query("select u.password from User u where u.name=:qname")
+	public String  findPassWordByName(@Param("qname") String name);
 }
