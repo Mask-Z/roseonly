@@ -82,7 +82,6 @@
             async: false,
             cache: false,
             type: 'POST',
-            contentType: "text/html; charset=utf-8",
             url: checkurl,// 请求的action路径
             data: formData,
             error: function () {// 请求失败处理函数

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,11 +35,11 @@ public class LoginController {
             Util.out("success.....");
             return "success";
         } else if (null == password) {
-            Util.out("没有此用户");
-            return "没有此用户!";
+            Util.out("没有此用户.....");
+            return "there is no this name";
         } else {
-            Util.out("fail......");
-            return "账号,密码不匹配!";
+            Util.out("账号,密码不匹配......");
+            return "name and password is not matching";
         }
     }
 
