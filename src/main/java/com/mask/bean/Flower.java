@@ -1,6 +1,7 @@
 package com.mask.bean;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by Mr丶周 on 2016/12/8.
@@ -12,6 +13,7 @@ public class Flower {
 	private String name;
 	private double price;
 	private Cart cartByCartId;
+	private Collection<Indent> indentsById;
 
 	@Id
 	@Column(name = "id", nullable = false)
@@ -88,5 +90,14 @@ public class Flower {
 
 	public void setCartByCartId(Cart cartByCartId) {
 		this.cartByCartId = cartByCartId;
+	}
+
+	@OneToMany(mappedBy = "flowerByFlowerId")
+	public Collection<Indent> getIndentsById() {
+		return indentsById;
+	}
+
+	public void setIndentsById(Collection<Indent> indentsById) {
+		this.indentsById = indentsById;
 	}
 }

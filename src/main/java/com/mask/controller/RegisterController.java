@@ -24,7 +24,7 @@ public class RegisterController {
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
     public String addUser(User user, HttpServletRequest request){
         user.setCity(request.getParameter("province")+","+user.getCity());
-        userDao.save(user);
+        userDao.saveAndFlush(user);
         request.getSession().setAttribute("msg","恭喜,用户名"+user.getName()+"注册成功!");
         return "login";
     }

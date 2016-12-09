@@ -18,6 +18,7 @@ public class User {
 	private String password;
 	private String realname;
 	private int role;
+	private Collection<Indent> indentsById;
 
 	@Id
 	@Column(name = "id", nullable = false)
@@ -144,5 +145,14 @@ public class User {
 
 	public void setRole(int role) {
 		this.role = role;
+	}
+
+	@OneToMany(mappedBy = "userByUserId")
+	public Collection<Indent> getIndentsById() {
+		return indentsById;
+	}
+
+	public void setIndentsById(Collection<Indent> indentsById) {
+		this.indentsById = indentsById;
 	}
 }

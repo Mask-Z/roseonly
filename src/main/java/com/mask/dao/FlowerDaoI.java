@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface FlowerDaoI extends JpaRepository<Flower,Integer> {
+//	Flower findOne(String flowerByFlowerId);
 }

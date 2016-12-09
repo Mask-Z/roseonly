@@ -17,33 +17,36 @@
 <body>
 <script src="/static/js/jquery-1.9.1.min.js"></script>
 商品详情
-<form >
-    <ul><img src="/static/picture/${flower.id}.jpg"/> </ul>
-    <ul>商品名称: ${flower.name}</ul>
-    <ul>  价 格 : ${flower.price}</ul>
-    <ul>剩余数量: ${flower.amount}</ul>
 
-<input type="hidden" value="${flower.id}" id="flowerId" name="flowerId">
-<input id="min" name="" type="button" value="-" />
-<input id="text_box" name="" type="text" value="0" />
-<input id="add" name="" type="button" value="+" />
-<p>总价：<label id="total"></label></p>
-   <br> <input type="submit" value="购买"/>
+<ul><img src="/static/picture/${flower.id}.jpg"/></ul>
+<ul>商品名称: ${flower.name}</ul>
+<ul> 价 格 : ${flower.price}</ul>
+<ul>剩余数量: ${flower.amount}</ul>
+<%--提交实体类报错400--%>
+<form action="/main/paying" method="post">
+    <input type="hidden" value="${baseUser.id}" id="userByUserId" name="userByUserId"/>
+    <input type="hidden" value="${flower.id}" id="flowerByFlowerId" name="flowerByFlowerId">
+    <input id="min" name="" type="button" value="-"/>
+    <input id="text_box" name="number" id="number" type="text" value="0"/>
+    <input id="add" name="" type="button" value="+"/>
+    <p>总价：<label id="total"></label></p>
+    <br> <input type="submit" value="购买"/>
 </form>
 <script>
-    $(function(){
+    $(function () {
         var t = $("#text_box");
-        $("#add").click(function(){
-            t.val(parseInt(t.val())+1)
+        $("#add").click(function () {
+            t.val(parseInt(t.val()) + 1)
             setTotal();
         })
-        $("#min").click(function(){
-            t.val(parseInt(t.val())-1)
+        $("#min").click(function () {
+            t.val(parseInt(t.val()) - 1)
             setTotal();
         })
-        function setTotal(){
-            $("#total").html((parseInt(t.val())*${flower.price}).toFixed(2));
+        function setTotal() {
+            $("#total").html((parseInt(t.val()) *${flower.price}).toFixed(2));
         }
+
         setTotal();
     })
 </script>
