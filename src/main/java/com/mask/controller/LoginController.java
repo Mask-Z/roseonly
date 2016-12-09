@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by zyl on 2016/12/8.
  */
@@ -24,11 +26,13 @@ public class LoginController {
 
     @RequestMapping(value = "checkUser", method = RequestMethod.POST)
     @ResponseBody
-    public String checkUser(User user) {
+    public String checkUser(User user, HttpServletRequest request) {
         Util.out("checkUser...." + user.getName());
         String password = userDao.findPassWordByName(user.getName());
         if (null != password && password.equals(user.getPassword())) {
             Util.out("success.....");
+            User baseUser=userDao.findOne(userDao.findIdByName(user.getName()));
+            request.getSession().setAttribute("baseUser",baseUser);
             return "success";
         } else if (null == password) {
             Util.out("没有此用户.....");

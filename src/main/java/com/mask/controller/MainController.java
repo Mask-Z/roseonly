@@ -24,14 +24,12 @@ public class MainController {
 
 	@RequestMapping("/detail")
 	public ModelAndView flowerDetail(@RequestParam int id) {
-		ModelAndView modelAndView=new ModelAndView("detail");
+
 		Flower flower = flowerDao.findOne(id);
 		out(flower.getName()+"....");
 		Map model=new HashMap();
 		model.put("flower",flower);
-//		modelAndView.addObject(flower);
-		modelAndView.addObject("flower", model);
-//		modelAndView.setViewName("detail");
+		ModelAndView modelAndView=new ModelAndView("detail","flower",flower);
 		return modelAndView;
 	}
 }

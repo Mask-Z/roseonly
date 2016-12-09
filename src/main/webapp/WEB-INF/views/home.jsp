@@ -15,7 +15,7 @@
 </style>
 <body>
 <div id="list" class=" picutre_many"
-     style="overflow: hidden; height: 150px; width: 800px; margin: 0 auto;">
+     style="overflow: hidden; height: 250px; width: 800px; margin: 0 auto;">
     <table cellspacing="0" cellpadding="0"
            style="width: 680px; border: 0px;">
         <tr>
@@ -38,6 +38,8 @@
         </tr>
     </table>
 </div>
+
+
 
 <script type="text/javascript">
     /*图片滚动效果*/

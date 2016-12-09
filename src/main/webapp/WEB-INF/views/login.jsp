@@ -8,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="base.jsp" %>
+<%@ page isELIgnored="false" %>
 <html>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +19,7 @@
 <body>
 <div class="container">
     <h1 class="page-header">登录界面</h1>
-    <c:if test="${not empty msg}">
+    <c:if test="${!empty msg}">
         <div class="row"><input type="submit" class="btn btn-success btn-lg col-sm-3" value="${msg}" align="center">
         </div>
         <% session.removeAttribute("msg");%>
@@ -36,15 +37,27 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
             </div>
         </div>
-
-        <%--<div class="row"><input type="submit" class="btn btn-info btn-lg col-sm-3" value="登录">--%>
-        <%--</div>--%>
         <div class="row"><a class="btn btn-info btn-lg col-sm-3" onclick="checkUser()">登录</a>
         </div>
         <br>
         <div class="row"><a class="btn btn-danger btn-lg col-sm-3" href="/register">注册</a>
         </div>
     </form>
+
+    <div class="footer">
+        <ul>
+            <a href="#"><li class="about-us">关于我们</li></a>
+            <li>|</li>
+            <a href="#"><li>常见问题</li></a>
+            <li>|</li>
+            <a href="#"><li>加入我们</li></a>
+            <li>|</li>
+            <a href="#"><li>退换条例</li></a>
+            <li>|</li>
+            <a href="#"><li>新浪微博</li></a>
+        </ul>
+        <span>常州大学信息科学与工程学院</span>
+    </div>
 </div>
 
 <script type="text/javascript">
