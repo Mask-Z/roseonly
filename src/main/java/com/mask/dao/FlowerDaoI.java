@@ -2,6 +2,8 @@ package com.mask.dao;
 
 import com.mask.bean.Flower;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface FlowerDaoI extends JpaRepository<Flower,Integer> {
-//	Flower findOne(String flowerByFlowerId);
+	//根据花名查询ID
+	@Query("select f.id from Flower f where f.name=:qname")
+	public int  findIdByName(@Param("qname") String name);
 }

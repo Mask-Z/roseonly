@@ -7,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="base.jsp"%>
+<%@ include file="base.jsp" %>
 <%@ page isELIgnored="false" %>
 <html>
 <head>
@@ -27,12 +27,12 @@
         </div>
         <div class="form-group">
             <label for="dealDetails">商品清单:</label>
-            <input type="text" class="form-control" id="dealDetails" name="dealDetails" placeholder="Enter FirstName:"
+            <input type="text" class="form-control" id="dealDetails" name="dealDetails"
                    value="${indent.dealDetails}"/>
         </div>
         <div class="form-group">
             <label for="address">送货地址:</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="Enter LastName:"
+            <input type="text" class="form-control" id="address" name="address"
                    value="${indent.address}"/>
         </div>
 

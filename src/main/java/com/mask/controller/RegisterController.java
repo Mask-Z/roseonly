@@ -2,7 +2,6 @@ package com.mask.controller;
 
 import com.mask.bean.User;
 import com.mask.dao.UserDaoI;
-import com.mask.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

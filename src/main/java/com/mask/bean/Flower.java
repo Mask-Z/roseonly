@@ -4,39 +4,29 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by Mr丶周 on 2016/12/8.
+ * Created by Mr丶周 on 2016/12/10.
  */
 @Entity
 public class Flower {
-	private int id;
-	private int amount;
+	private Integer amount;
 	private String name;
-	private double price;
+	private Double price;
 	private Cart cartByCartId;
 	private Collection<Indent> indentsById;
-
-	@Id
-	@Column(name = "id", nullable = false)
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	private int id;
 
 	@Basic
-	@Column(name = "amount", nullable = false)
-	public int getAmount() {
+	@Column(name = "amount", nullable = true)
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 
 	@Basic
-	@Column(name = "name", nullable = false, length = 20)
+	@Column(name = "name", nullable = true, length = 20)
 	public String getName() {
 		return name;
 	}
@@ -46,12 +36,12 @@ public class Flower {
 	}
 
 	@Basic
-	@Column(name = "price", nullable = false, precision = 0)
-	public double getPrice() {
+	@Column(name = "price", nullable = true, precision = 0)
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
@@ -62,28 +52,23 @@ public class Flower {
 
 		Flower flower = (Flower) o;
 
-		if (id != flower.id) return false;
-		if (amount != flower.amount) return false;
-		if (Double.compare(flower.price, price) != 0) return false;
+		if (amount != null ? !amount.equals(flower.amount) : flower.amount != null) return false;
 		if (name != null ? !name.equals(flower.name) : flower.name != null) return false;
+		if (price != null ? !price.equals(flower.price) : flower.price != null) return false;
 
 		return true;
 	}
 
 	@Override
 	public int hashCode() {
-		int result;
-		long temp;
-		result = id;
-		result = 31 * result + amount;
+		int result = amount != null ? amount.hashCode() : 0;
 		result = 31 * result + (name != null ? name.hashCode() : 0);
-		temp = Double.doubleToLongBits(price);
-		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		result = 31 * result + (price != null ? price.hashCode() : 0);
 		return result;
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "cart_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "cart_id", referencedColumnName = "id")
 	public Cart getCartByCartId() {
 		return cartByCartId;
 	}
@@ -99,5 +84,15 @@ public class Flower {
 
 	public void setIndentsById(Collection<Indent> indentsById) {
 		this.indentsById = indentsById;
+	}
+
+	@Id
+	@Column(name = "id", nullable = false)
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

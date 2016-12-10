@@ -30,6 +30,9 @@
             <property name="hibernate.connection.autoReconnect" value="true"/>
             <property name="connection.autoReconnectForPools" value="true"/>
             <property name="connection.is-connection-validation-required" value="true"/>
+            <!--关闭懒加载-->
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+            <!--<property name="hibernate.transaction.auto_close_session" value="false"/>-->
         </properties>
     </persistence-unit>
 </persistence>

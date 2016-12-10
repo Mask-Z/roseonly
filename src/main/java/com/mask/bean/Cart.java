@@ -1,29 +1,23 @@
 package com.mask.bean;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.Collection;
+import java.util.Date;
 
 /**
- * Created by Mr丶周 on 2016/12/6.
+ * Created by Mr丶周 on 2016/12/10.
  */
 @Entity
 public class Cart {
-	private int id;
 	private String goods;
 	private Integer amount;
 	private Date addtime;
 	private User userByUserId;
 	private Collection<Flower> flowersById;
+	private int id;
 
-	@Id
-	@Column(name = "id", nullable = false)
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setAddtime(java.sql.Date addtime) {
+		this.addtime = addtime;
 	}
 
 	@Basic
@@ -47,7 +41,7 @@ public class Cart {
 	}
 
 	@Basic
-	@Column(name = "addtime", nullable = false)
+	@Column(name = "addtime", nullable = true)
 	public Date getAddtime() {
 		return addtime;
 	}
@@ -63,7 +57,6 @@ public class Cart {
 
 		Cart cart = (Cart) o;
 
-		if (id != cart.id) return false;
 		if (goods != null ? !goods.equals(cart.goods) : cart.goods != null) return false;
 		if (amount != null ? !amount.equals(cart.amount) : cart.amount != null) return false;
 		if (addtime != null ? !addtime.equals(cart.addtime) : cart.addtime != null) return false;
@@ -73,8 +66,7 @@ public class Cart {
 
 	@Override
 	public int hashCode() {
-		int result = id;
-		result = 31 * result + (goods != null ? goods.hashCode() : 0);
+		int result = goods != null ? goods.hashCode() : 0;
 		result = 31 * result + (amount != null ? amount.hashCode() : 0);
 		result = 31 * result + (addtime != null ? addtime.hashCode() : 0);
 		return result;
@@ -97,5 +89,15 @@ public class Cart {
 
 	public void setFlowersById(Collection<Flower> flowersById) {
 		this.flowersById = flowersById;
+	}
+
+	@Id
+	@Column(name = "id", nullable = false)
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

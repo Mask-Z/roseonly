@@ -14,6 +14,7 @@
     .picutre_many img{width:200px; height:150px;}
 </style>
 <body>
+<a href="/main/logout"><label class="label">退出</label></a>
 <div id="list" class=" picutre_many"
      style="overflow: hidden; height: 250px; width: 800px; margin: 0 auto;">
     <table cellspacing="0" cellpadding="0"

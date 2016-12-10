@@ -4,31 +4,21 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by Mr丶周 on 2016/12/6.
+ * Created by Mr丶周 on 2016/12/10.
  */
 @Entity
 public class User {
-	private int id;
 	private String name;
+	private String password;
+	private String realname;
+	private Integer role;
 	private String number;
 	private String gender;
 	private String city;
 	private Double account;
 	private Collection<Cart> cartsById;
-	private String password;
-	private String realname;
-	private int role;
 	private Collection<Indent> indentsById;
-
-	@Id
-	@Column(name = "id", nullable = false)
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	private int id;
 
 	@Basic
 	@Column(name = "name", nullable = true, length = 50)
@@ -38,6 +28,36 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Basic
+	@Column(name = "password", nullable = true, length = 20)
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Basic
+	@Column(name = "realname", nullable = true, length = 20)
+	public String getRealname() {
+		return realname;
+	}
+
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
+
+	@Basic
+	@Column(name = "role", nullable = true)
+	public Integer getRole() {
+		return role;
+	}
+
+	public void setRole(Integer role) {
+		this.role = role;
 	}
 
 	@Basic
@@ -87,8 +107,10 @@ public class User {
 
 		User user = (User) o;
 
-		if (id != user.id) return false;
 		if (name != null ? !name.equals(user.name) : user.name != null) return false;
+		if (password != null ? !password.equals(user.password) : user.password != null) return false;
+		if (realname != null ? !realname.equals(user.realname) : user.realname != null) return false;
+		if (role != null ? !role.equals(user.role) : user.role != null) return false;
 		if (number != null ? !number.equals(user.number) : user.number != null) return false;
 		if (gender != null ? !gender.equals(user.gender) : user.gender != null) return false;
 		if (city != null ? !city.equals(user.city) : user.city != null) return false;
@@ -99,8 +121,10 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		int result = id;
-		result = 31 * result + (name != null ? name.hashCode() : 0);
+		int result = name != null ? name.hashCode() : 0;
+		result = 31 * result + (password != null ? password.hashCode() : 0);
+		result = 31 * result + (realname != null ? realname.hashCode() : 0);
+		result = 31 * result + (role != null ? role.hashCode() : 0);
 		result = 31 * result + (number != null ? number.hashCode() : 0);
 		result = 31 * result + (gender != null ? gender.hashCode() : 0);
 		result = 31 * result + (city != null ? city.hashCode() : 0);
@@ -117,36 +141,6 @@ public class User {
 		this.cartsById = cartsById;
 	}
 
-	@Basic
-	@Column(name = "password", nullable = false, length = 20)
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Basic
-	@Column(name = "realname", nullable = true, length = 20)
-	public String getRealname() {
-		return realname;
-	}
-
-	public void setRealname(String realname) {
-		this.realname = realname;
-	}
-
-	@Basic
-	@Column(name = "role", nullable = false)
-	public int getRole() {
-		return role;
-	}
-
-	public void setRole(int role) {
-		this.role = role;
-	}
-
 	@OneToMany(mappedBy = "userByUserId")
 	public Collection<Indent> getIndentsById() {
 		return indentsById;
@@ -154,5 +148,15 @@ public class User {
 
 	public void setIndentsById(Collection<Indent> indentsById) {
 		this.indentsById = indentsById;
+	}
+
+	@Id
+	@Column(name = "id", nullable = false)
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
