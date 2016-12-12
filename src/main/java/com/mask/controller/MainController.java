@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 import static com.mask.utils.Util.out;
@@ -144,9 +145,19 @@ public class MainController {
 				}
 			}
 		}
-
-//		Map<Flower,Integer> flowerMap=new HashMap<>();
+		Double count = 0.0;
+		for (String key : map.keySet()) {
+			count = count + flowerDao.findFlowerByName(key).getPrice() * map.get(key);
+		}
+		request.setAttribute("count", count);
 		request.setAttribute("map", map);
 		return "deal2";
+	}
+	@RequestMapping("/userManage")
+	public String userManager(HttpServletRequest request){
+		HttpSession session=request.getSession();
+		User user= (User) session.getAttribute("baseUser");
+		session.setAttribute("baseUser",userDao.findOne(user.getId()));//刷新用户信息
+		return "userManage";
 	}
 }

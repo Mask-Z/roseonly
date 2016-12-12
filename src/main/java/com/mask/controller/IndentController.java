@@ -50,6 +50,7 @@ public class IndentController {
 		indentDao.saveAndFlush(indent);
 		//移除购物车信息
 		cartDao.delete(((User) request.getSession().getAttribute("baseUser")).getCartsById());
+		cartDao.flush();
 		request.setAttribute("msg","已成功付款,请等待收货");
 		return "home";
 	}

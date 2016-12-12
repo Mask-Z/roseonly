@@ -25,31 +25,35 @@
 <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <body>
 <div class="container">
-<h1>RoseOnly-用户管理</h1>
+<h1>RoseOnly-用户详情</h1>
 <hr/>
 
-<h3>所有用户 <a href="/addUser" type="button" class="btn btn-default btn-sm">添加</a></h3>
+<%--<h3>所有用户 <a href="/addUser" type="button" class="btn btn-default btn-sm">添加</a></h3>--%>
 
 <!-- 如果用户列表为空 -->
-<c:if test="${empty userList}">
+<c:if test="${empty baseUser}">
     <p class="bg-warning">
         <br/>
-        User表为空，请<a href="/addUser" type="button" class="btn btn-default btn-sm">添加</a>
+        <%--User表为空，请<a href="/addUser" type="button" class="btn btn-default btn-sm">添加</a>--%>
+        没有用户,或者你没有查看权限
         <br/>
         <br/>
     </p>
 </c:if>
 
 <!-- 如果用户列表非空 -->
-<c:if test="${!empty userList}">
+<c:if test="${!empty baseUser}">
     <table class="table table-bordered table-striped">
         <tr>
             <th>ID</th>
             <th>姓名</th>
             <th>密码</th>
             <th>操作</th>
+            <th>${baseUser.role}</th>
+            <th>${baseUser.name}</th>
+            <th>${baseUser.password}</th>
         </tr>
-
+    <c:if test="${sessionScope.baseUser.role==1}">
         <c:forEach items="${userList}" var="user">
             <tr>
                 <td>${user.id}</td>
@@ -62,8 +66,24 @@
                 </td>
             </tr>
         </c:forEach>
+    </c:if>
+    <c:if test="${sessionScope.baseUser.role==0}">
+        <tr>
+            <td>${baseUser.id}</td>
+            <td>${baseUser.name}</td>
+            <td>${baseUser.password}</td>
+            <td>
+                <a href="/users/show/${baseUser.id}" type="button" class="btn btn-sm btn-success">详情</a>
+                <a href="/users/update/${baseUser.id}" type="button" class="btn btn-sm btn-warning">修改</a>
+                <%--<a href="/deleteUser/${baseUser.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
+            </td>
+        </tr>
+    </c:if>
     </table>
 </c:if>
+
+
+
 </div>
 </body>
 </html>

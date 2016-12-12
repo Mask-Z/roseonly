@@ -14,4 +14,8 @@ public interface FlowerDaoI extends JpaRepository<Flower,Integer> {
 	//根据花名查询ID
 	@Query("select f.id from Flower f where f.name=:qname")
 	public int  findIdByName(@Param("qname") String name);
+
+	//根据花名查询ID
+	@Query("select f from Flower f where f.name=:qname")
+	public Flower  findFlowerByName(@Param("qname") String name);
 }

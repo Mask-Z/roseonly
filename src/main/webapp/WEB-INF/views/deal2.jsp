@@ -17,60 +17,65 @@
 <body>
 
 <div class="container">
-    <h1>交易详情</h1>
-    <hr/>
+    <c:if test="${empty map}">
+        <h2>购物车没有商品</h2><br>
+        <div class="row"><a class="btn btn-danger btn-lg col-sm-" href="/sysLogin">继续逛逛</a>
+    </c:if>
+    <c:if test="${not empty map}">
+        <h1>交易详情</h1>
+        <hr/>
+        <form action="/indent/saveIndent" method="post" role="form">
+            <div class="form-group">
+                <label for="name">姓名:</label>
+                <input type="text" class="form-control" id="name" name="name"
+                       value="${baseUser.name}"/>
+            </div>
+            <div class="form-group">
+                <label for="dealDetails">商品清单:</label>
+                <c:forEach items="${map}" var="i">
+                    <input type="text" class="form-control" id="dealDetails" name="dealDetails"
+                           value="${i.key}*${i.value}"/>
+                </c:forEach>
+            </div>
 
-    <form action="/indent/saveIndent" method="post"  role="form">
-        <div class="form-group">
-            <label for="name">姓名:</label>
-            <input type="text" class="form-control" id="name" name="name"
-                   value="${baseUser.name}"/>
-        </div>
-        <div class="form-group">
-            <label for="dealDetails">商品清单:</label>
-            <c:forEach items="${map}" var="i">
-                <input type="text" class="form-control" id="dealDetails" name="dealDetails"
-                       value="${i.key}*${i.value}" />
-            </c:forEach>
-        </div>
+            <div class="form-group">
+                <label for="totalMoney">需支付:</label>
+                <input type="text" class="form-control" id="totalMoney" name="totalMoney"
+                       value="${count}" onfocus="this.blur()"/>
+            </div>
 
-        <div class="form-group">
-            <label for="totalMoney">需支付:</label>
-            <input type="text" class="form-control" id="totalMoney" name="totalMoney"
-                   value="199.0" onfocus="this.blur()" />
-        </div>
+            <div class="form-group">
+                <label for="address">送货地址:</label>
+                <input type="text" class="form-control" id="address" name="address"
+                       value="${baseUser.city}"/>
+            </div>
+            <div class="form-group">
+                <label for="mobile">联系方式:</label>
+                <input type="text" class="form-control" id="mobile" name="mobile"
+                       value="${baseUser.number}"/>
+            </div>
+            <div class="form-group">
+                <label for="postStyle">配送方式:</label>
+                <select class="form-select-button" id="postStyle" name="postStyle">
+                    <option value="1">顺丰快递</option>
+                    <option value="2">天天快递</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="address">送货地址:</label>
-            <input type="text" class="form-control" id="address" name="address"
-                   value="${baseUser.city}"/>
-        </div>
-        <div class="form-group">
-            <label for="mobile">联系方式:</label>
-            <input type="text" class="form-control" id="mobile" name="mobile"
-                   value="${baseUser.number}"/>
-        </div>
-        <div class="form-group">
-            <label for="postStyle">配送方式:</label>
-            <select class="form-select-button" id="postStyle" name="postStyle">
-                <option value="1">顺丰快递</option>
-                <option value="2">天天快递</option>
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="payStyle">付款方式:</label>
+                <select class="form-select-button" id="payStyle" name="payStyle">
+                    <option value="1">在线支付</option>
+                    <option value="2">货到付款</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="payStyle">付款方式:</label>
-            <select class="form-select-button" id="payStyle" name="payStyle">
-                <option value="1">在线支付</option>
-                <option value="2">货到付款</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-sm btn-success">付款</button>
-        </div>
-    </form>
+            <div class="form-group">
+                <button type="submit" class="btn btn-sm btn-success">付款</button>
+            </div>
+        </form>
+    </c:if>
 </div>
-
+</div>
 </body>
 </html>

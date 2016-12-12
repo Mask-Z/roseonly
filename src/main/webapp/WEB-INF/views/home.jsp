@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mr丶周
@@ -13,8 +14,18 @@
 <style>
     .picutre_many img{width:200px; height:150px;}
 </style>
-<body>
-<a href="/main/logout"><label class="label">退出</label></a>
+<script src=""></script>
+<script>
+    function showMsg() {
+        var msg='<%=request.getAttribute("msg")%>';
+        if(msg!=null&&msg!='null'&&msg!=''){
+            alert(msg);
+        }
+    }
+</script>
+<body onload="showMsg()">
+<!-- 引入头部导航 -->
+<jsp:include flush="true" page="header.jsp"></jsp:include>
 <div id="list" class=" picutre_many"
      style="overflow: hidden; height: 250px; width: 800px; margin: 0 auto;">
     <table cellspacing="0" cellpadding="0"
