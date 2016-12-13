@@ -64,12 +64,23 @@ public class UserController {
 
 	// 更新用户信息 操作
 	@RequestMapping(value = "/users/updateP", method = RequestMethod.POST)
-	public String updateUserPost(@ModelAttribute("userP") User user) {
+	public String updateUserPost(User user) {
 
 		// 更新用户信息
-//		userRepository.updateUser(user.getNickname(), user.getFirstName(),
-//				user.getLastName(), user.getPassword(), user.getId());
-//		userRepository.flush(); // 刷新缓冲区
-		return "redirect:main/userManage";
+		userDao.updateUser(user.getName(),user.getPassword(),user.getCity(),user.getRole(),user.getNumber(),user.getRealname(),user.getId());
+		// 刷新缓冲区
+		userDao.flush();
+		return "redirect:/userLists";
+	}
+
+	// 删除用户
+	@RequestMapping(value = "/users/delete/{id}", method = RequestMethod.GET)
+	public String deleteUser(@PathVariable("id") Integer userId) {
+
+		// 删除id为userId的用户
+		userDao.delete(userId);
+		// 立即刷新
+		userDao.flush();
+		return "redirect:/main/userManage";
 	}
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mr丶周
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="base.jsp"%>
 <html>
 <head>
     <title>用户详情</title>
@@ -36,7 +38,13 @@
             <th>手机号码</th>
             <td>${user.number}</td>
         </tr>
+        <tr>
+        <th>地址</th>
+        <td>${user.city}</td>
+        </tr>
+
     </table>
+
 </div>
 </body>
 </html>

@@ -17,9 +17,9 @@ public interface UserDaoI extends JpaRepository<User, Integer> {
 	@Transactional  // 说明该方法是事务性操作
 	// 定义查询
 	// @Param注解用于提取参数
-	@Query("update User us set us.name=:qname, us.password=:qpassword, us.city=:qcity, us.gender=:qgender" +
+	@Query("update User us set us.name=:qname, us.password=:qpassword, us.city=:qcity, us.role=:qrole" +
 			",us.number=:qnumber,us.realname=:qrealname where us.id=:qId")
-	public void updateUser(@Param("qname") String name, @Param("qpassword") String password, @Param("qcity") String city, @Param("qgender") String gender,
+	public void updateUser(@Param("qname") String name, @Param("qpassword") String password, @Param("qcity") String city, @Param("qrole") Integer role,
 						   @Param("qnumber") String number, @Param("qrealname") String realname, @Param("qId") Integer id);
 
 	//根据用户名查询密码

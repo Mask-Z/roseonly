@@ -7,12 +7,15 @@ import com.mask.dao.IndentDaoI;
 import com.mask.dao.UserDaoI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.Date;
+import java.util.List;
 
 import static com.mask.utils.Util.out;
 
@@ -53,5 +56,13 @@ public class IndentController {
 		cartDao.flush();
 		request.setAttribute("msg","已成功付款,请等待收货");
 		return "home";
+	}
+	@RequestMapping("/indents/showIndent/{id}")
+	public String showIndent(@PathVariable("id")Integer userId, ModelMap modelMap){
+		out("showIndent().......");
+		modelMap.put("user",userDao.findOne(userId));
+		List<Indent> indentList= (List<Indent>) userDao.findOne(userId).getIndentsById();
+		modelMap.put("indentList",indentList);
+		return "indentDetail";
 	}
 }

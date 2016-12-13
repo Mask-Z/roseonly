@@ -49,9 +49,6 @@
             <th>姓名</th>
             <th>密码</th>
             <th>操作</th>
-            <th>${baseUser.role}</th>
-            <th>${baseUser.name}</th>
-            <th>${baseUser.password}</th>
         </tr>
     <c:if test="${sessionScope.baseUser.role==1}">
         <c:forEach items="${userList}" var="user">
@@ -60,9 +57,10 @@
                 <td>${user.name}</td>
                 <td>${user.password}</td>
                 <td>
-                    <a href="/showUser/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>
-                    <a href="/updateUser/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>
-                    <a href="/deleteUser/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>
+                    <a href="/users/show/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>
+                    <a href="/users/update/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>
+                    <a href="/users/delete/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>
+                    <a href="/indent/indents/showIndent/${user.id}" type="button" class="btn btn-sm btn-danger">订单详情</a>
                 </td>
             </tr>
         </c:forEach>
@@ -75,7 +73,7 @@
             <td>
                 <a href="/users/show/${baseUser.id}" type="button" class="btn btn-sm btn-success">详情</a>
                 <a href="/users/update/${baseUser.id}" type="button" class="btn btn-sm btn-warning">修改</a>
-                <%--<a href="/deleteUser/${baseUser.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
+                <a href="/indent/indents/showIndent/${baseUser.id}" type="button" class="btn btn-sm btn-danger">我的订单</a>
             </td>
         </tr>
     </c:if>

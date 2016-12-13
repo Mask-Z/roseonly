@@ -153,11 +153,11 @@ public class MainController {
 		request.setAttribute("map", map);
 		return "deal2";
 	}
-	@RequestMapping("/userManage")
-	public String userManager(HttpServletRequest request){
-		HttpSession session=request.getSession();
-		User user= (User) session.getAttribute("baseUser");
-		session.setAttribute("baseUser",userDao.findOne(user.getId()));//刷新用户信息
-		return "userManage";
-	}
+//	@RequestMapping("/userManage")
+//	public String userManager(HttpServletRequest request){
+//		HttpSession session=request.getSession();
+//		User user= (User) session.getAttribute("baseUser");
+//		session.setAttribute("baseUser",userDao.findOne(user.getId()));//刷新用户信息
+//		return "userManage";
+//	}
 }
