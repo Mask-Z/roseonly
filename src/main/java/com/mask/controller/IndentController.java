@@ -1,8 +1,10 @@
 package com.mask.controller;
 
+import com.mask.bean.Flower;
 import com.mask.bean.Indent;
 import com.mask.bean.User;
 import com.mask.dao.CartDaoI;
+import com.mask.dao.FlowerDaoI;
 import com.mask.dao.IndentDaoI;
 import com.mask.dao.UserDaoI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ public class IndentController {
 	private UserDaoI userDao;
 	@Autowired
 	private CartDaoI cartDao;
+	@Autowired
+	private FlowerDaoI flowerDao;
 
 	/**
 	 * 保存用户订单(先这样接收数据)
@@ -50,6 +54,7 @@ public class IndentController {
 		indent.setPayStyle(payStyle);
 		indent.setTotalMoney(totalMoney);
 		indent.setUserByUserId((User) request.getSession().getAttribute("baseUser"));
+		indent.setState(1);//设置订单初始状态为1,代表为出库
 		indentDao.saveAndFlush(indent);
 		//移除购物车信息
 		cartDao.delete(((User) request.getSession().getAttribute("baseUser")).getCartsById());
@@ -64,5 +69,31 @@ public class IndentController {
 		List<Indent> indentList= (List<Indent>) userDao.findOne(userId).getIndentsById();
 		modelMap.put("indentList",indentList);
 		return "indentDetail";
+	}
+
+	/**
+	 * 管理员修改订单状态
+	 * @return
+	 */
+	@RequestMapping("/updateState/{userId}/{indentId}")
+	public String updateState(@PathVariable("userId")Integer userId,@PathVariable("indentId")Integer indentId){
+		out("update.....");
+		Indent indent=indentDao.findOne(indentId);
+		indent.setState(2);
+		String deal_details=indent.getDealDetails();
+		String[] detailsArr=deal_details.split(",");
+		for(String arr:detailsArr){
+			String[] arr2=arr.split("/*");
+			if(arr2.length==2){
+				String flowerName=arr2[0];
+				int flowerNumber= Integer.parseInt(arr2[1]);
+				Flower flower=flowerDao.findFlowerByName(flowerName);
+				flower.setAmount(flower.getAmount()-flowerNumber);
+				flowerDao.saveAndFlush(flower);//订单出库时,商品要减少
+			}
+		}
+		indentDao.saveAndFlush(indent);
+
+		return "redirect:/indent/indents/showIndent/"+userId;
 	}
 }

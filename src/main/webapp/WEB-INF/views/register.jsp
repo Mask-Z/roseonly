@@ -9,7 +9,7 @@
 <%@include file="base.jsp" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>注册界面</title>
 </head>
 
 <body onload="loadProvince()">
@@ -145,10 +145,11 @@
                     if (checkPassword() && checkRepassword() && checkNumber) {
                         document.getElementById('form1').submit();
                     }
-                    if (data == "failed") {
-                        alert("该用户名已存在,请重试!");
-                        return false;
-                    }
+                }
+
+                if (data == "failed") {
+                    alert("该用户名已存在,请重试!");
+                    return false;
                 }
             }
         })

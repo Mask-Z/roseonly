@@ -59,7 +59,7 @@
                     <%--管理员--%>
                     <c:if test="${baseUser.role==1}">
                         <td>
-                            <c:if test="${indent.state==1}">未出库,<a href="#">确认出库</a></c:if>
+                            <c:if test="${indent.state==1}">已付款,<a href="/indent/updateState/${user.id}/${indent.id}">确认出库</a></c:if>
                             <c:if test="${indent.state==2}">交易完成</c:if>
                         </td>
                     </c:if>
