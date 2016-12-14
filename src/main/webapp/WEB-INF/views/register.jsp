@@ -144,8 +144,10 @@
 
                     if (checkPassword() && checkRepassword() && checkNumber) {
                         document.getElementById('form1').submit();
-//                    }else {
-//            alert("表单有错,请检查后再提交");
+                    }
+                    if (data == "failed") {
+                        alert("该用户名已存在,请重试!");
+                        return false;
                     }
                 }
             }
