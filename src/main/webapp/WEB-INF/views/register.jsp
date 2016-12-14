@@ -6,43 +6,238 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="base.jsp" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 
 <body onload="loadProvince()">
+<div class="container">
+    <h1 class="page-header">注册界面</h1>
+    <form action="/addUser" method="post" id="form1" name="form1">
+        <div class="row">
+            <div class="form-group col-sm-7">
+                <label for="name">用户名</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="请输入账号" onblur="checkName()">
+            </div>
+            <div class="col-sm-2">
+                <span id="nameInfo"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-7">
+                <label for="password">密码</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码"
+                       onblur="checkPassword()">
+            </div>
+            <div class="col-sm-2">
+                <span id="passwordInfo"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-7">
+                <label for="password">重复密码</label>
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="请再次输入密码"
+                       onblur="checkRepassword()">
+            </div>
+            <div class="col-sm-2">
+                <span id="password2Info"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-7">
+                <label for="realname">真实姓名</label>
+                <input type="text" class="form-control" id="realname" name="realname" placeholder="你的真实姓名">
+            </div>
+            <div class="col-sm-2">
+                <span id="realnameInfo"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-7">
+                <label for="number">手机号码</label>
+                <input type="text" class="form-control" id="number" name="number" placeholder="请输入手机号码"
+                       onblur="checkNumber()">
+            </div>
+            <div class="col-sm-2">
+                <span id="numberInfo"></span>
+            </div>
+        </div>
 
-<form action="/addUser" method="post" id="form1" name="form1">
-    用户名: <input type="text" name="name"/>
-    <br>
-    密 码:
-    <input type="password" name="password"/>
-    <br>
-    真实姓名: <input type="text" name="realname"/>
-    <br>
-    手机号码: <input type="text" name="number"/>
-    <br>
-    性别:
-    <input type="radio" name="gender" value="男">男</input>
-    <input type="radio" name="gender" value="女">女</input>
-    <br>
-    地址:<br>
-    <select name="province" onchange="cityName(this.selectedIndex)">
-        <option value="">
-            请选择省名
-        </option>
-    </select> &nbsp;&nbsp;
-    <select name="city">
-        <option value="">
-            请选择城名
-        </option>
-    </select><br>
-    <input type="submit" value="注册">
-</form>
+        <div class="form-group" onblur="checkName()">
+            <label class="col-sm-2 control-label">性别：</label>
+            <div class="col-sm-4">
+                <label class="radio-inline">
+                    <input type="radio" name="gender" value="男" checked="checked">男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="gender" value="女" checked="">女
+                </label>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="province" class="col-sm-2 control-label">地址：</label>
+            <div class="col-sm-2">
+                <select id="province" name="province" onchange="cityName(this.selectedIndex)">
+                    <option value="">
+                        请选择省名
+                    </option>
+                </select> &nbsp;&nbsp;
+                <select name="city">
+                    <option value="">
+                        请选择城名
+                    </option>
+                </select>
+            </div>
+        </div>
+        <%--<div class="row">--%>
+        <%--<div class="btn btn-warning btn-lg col-sm-3">--%>
+        <%--<input type="submit"  onclick=" return checkRegister()">注册</input>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--用户名: <input type="text" name="name" id="name"/>--%>
+        <%--<br>--%>
 
+        <%--密 码:--%>
+        <%--<input type="password" name="password"/>--%>
+        <%--<br>--%>
+        <%--真实姓名: <input type="text" name="realname"/>--%>
+        <%--<br>--%>
+        <%--手机号码: <input type="text" name="number"/>--%>
+        <%--<br>--%>
+        <%--性别:--%>
+        <%--<input type="radio" name="gender" value="男">男</input>--%>
+        <%--<input type="radio" name="gender" value="女">女</input>--%>
+        <%--<br>--%>
+        <%--地址:<br>--%>
+        <%--<select name="province" onchange="cityName(this.selectedIndex)">--%>
+        <%--<option value="">--%>
+        <%--请选择省名--%>
+        <%--</option>--%>
+        <%--</select> &nbsp;&nbsp;--%>
+        <%--<select name="city">--%>
+        <%--<option value="">--%>
+        <%--请选择城名--%>
+        <%--</option>--%>
+        <%--</select><br>--%>
+        <%--<input type="submit" value="注册">--%>
+        <%--<br>--%>
+        <div class="row"><a class="btn btn-warning btn-lg col-sm-3" onclick="checkRegister()">注册</a></div>
+    </form>
+</div>
 
 </body>
+<script>
+    function checkRegister() {
+        var name = document.getElementById("name").value.trim();
+        var url = '/checkName?name=' + name;
+        $.ajax({
+            async: false,
+            cache: false,
+            type: 'GET',
+//                dataType: "text",
+            url: url,
+            success: function (data) {
+                if (data == "success") {
+
+                    if (checkPassword() && checkRepassword() && checkNumber) {
+                        document.getElementById('form1').submit();
+//                    }else {
+//            alert("表单有错,请检查后再提交");
+                    }
+                }
+            }
+        })
+
+    }
+    function checkName() {
+        var name = document.getElementById("name").value.trim();
+        var nameRegex = /^[^@#]{3,16}$/;
+        var url = '/checkName?name=' + name;
+        if (!nameRegex.test(name)) {
+//            document.getElementById("nameInfo").innerHTML = "用户名为3~16个字符，且不能包含”@”和”#”字符";
+            alert("用户名为3~16个字符，且不能包含”@”和”#”字符");
+            return false;
+        } else {
+            $.ajax({
+                async: false,
+                cache: false,
+                type: 'GET',
+//                dataType: "text",
+                url: url,
+                success: function (data) {
+                    if (data == "success") {
+
+                    }
+                    if (data == "failed") {
+                        alert("该用户名已存在,请重试!");
+                        return false;
+                    }
+                }
+            })
+
+        }
+    }
+    //验证密码（长度在8个字符到16个字符）
+    function checkPassword() {
+        var password = document.getElementById("password").value.trim();
+        //var password=$("#password").value;
+        $("#passwordInfo").innerHTML = "";
+        //密码长度在8个字符到16个字符，由字母、数字和".""-""_""@""#""$"组成
+        //var passwordRegex=/^[0-9A-Za-z.\-\_\@\#\$]{8,16}$/;
+        //密码长度在8个字符到16个字符，由字母、数字和"_"组成
+        var passwordRegex = /^[0-9A-Za-z_]\w{5,15}$/;
+        if (!passwordRegex.test(password)) {
+//            document.getElementById("passwordInfo").innerHTML="密码长度必须在6个字符到16个字符之间";
+            alert("密码长度必须在6个字符到16个字符之间");
+            return false;
+        } else {
+//            document.getElementById("passwordInfo").innerHTML = "密码通过";
+            return true;
+        }
+    }
+
+    //验证校验密码（和上面密码必须一致）
+    function checkRepassword() {
+        var password = document.getElementById("password").value.trim();
+        var repassword = document.getElementById("password2").value.trim();
+        //校验密码和上面密码必须一致
+        if (repassword !== password) {
+//            document.getElementById("password2Info").innerHTML="两次输入的密码不一致";
+            alert("两次输入的密码不一致");
+            return false;
+        } else if (repassword == password) {
+//            document.getElementById("password2Info").innerHTML = "密码正确";
+            return true;
+        }
+    }
+    function checkNumber() {
+        var number = document.getElementById('number').value.trim();
+
+        var regEx = /^\d{8}-\d{1,9}$|^\d{11}-\d{1,9}$|^\d{8}$|^\d{11}$/;
+
+        if (number != '') {
+            if (regEx.test(number)) {
+//                document.getElementById("numberInfo").innerHTML = "手机号码格式正确";
+                return true;
+            } else {
+                alert('手机号码格式错误');
+                return false;
+            }
+        } else {
+            alert('手机号码格式错误');
+            return false;
+        }
+
+    }
+    //去掉字符串前后空格
+    //    function trim(str) {
+    //        return str.replace(/(^\s*)|(\s*$)/g, '');
+    //    }
+
+</script>
 <script type="text/javascript">
     // <a href="http://lib.csdn.net/base/javascript" class='replace_word' title="JavaScript知识库" target='_blank' style='color:#df3434; font-weight:bold;'>JavaScript</a> Document
 

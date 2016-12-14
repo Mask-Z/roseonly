@@ -30,4 +30,10 @@ public interface UserDaoI extends JpaRepository<User, Integer> {
 	//根据用户名查询ID
 	@Query("select u.id from User u where u.name=:qname")
 	public int  findIdByName(@Param("qname") String name);
+
+	/**
+	 * 根据用户名查询实体类
+	 */
+//	@Query("select User from User u where u.name=:qname")
+//	public User  findUserByName(@Param("qname") String name);
 }
