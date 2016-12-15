@@ -81,6 +81,6 @@ public class UserController {
 		userDao.delete(userId);
 		// 立即刷新
 		userDao.flush();
-		return "redirect:/main/userManage";
+		return "redirect:/userLists";
 	}
 }

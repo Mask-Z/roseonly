@@ -16,9 +16,7 @@
 <head>
     <title>Login</title>
 </head>
-<script type="text/javascript">
-    history.go(1);
-</script>
+
 <body>
 <div class="container">
     <h1 class="page-header">登录界面</h1>
@@ -112,5 +110,6 @@
         });
     }
 </script>
+
 </body>
 </html>

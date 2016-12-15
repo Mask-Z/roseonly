@@ -11,6 +11,7 @@
 <head>
     <title>订单详情</title>
 </head>
+
 <body>
 <div class="container">
     <h1>${user.name}的订单</h1>

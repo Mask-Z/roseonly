@@ -20,7 +20,7 @@
 				<%--<a id="register" href="register" title="注册" >&nbsp;注册</a>--%>
 			<%--</c:if>--%>
 			<a class="left">热线电话 123-456-7890&nbsp;</a>
-			<a href="javascript:void(0);" title="收藏夹" class="collect">收藏夹</a>
+			<%--<a href="javascript:void(0);" title="收藏夹" class="collect">收藏夹</a>--%>
 		</div>
 	</div>
 </div>

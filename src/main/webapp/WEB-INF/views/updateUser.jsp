@@ -13,6 +13,9 @@
 <head>
     <title>更新用户</title>
 </head>
+<script type="text/javascript">
+    history.go(-1);
+</script>
 <body>
 <div class="container">
     <h1>RoseOnly修改用户信息</h1>

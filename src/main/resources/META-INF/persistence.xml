@@ -15,7 +15,7 @@
             <!-- 数据库连接的密码 -->
             <property name="hibernate.connection.password" value="root"/>
             <!-- 显示SQL语句 -->
-            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.show_sql" value="false"/>
 
             <property name="hibernate.connection.useUnicode" value="true"/>
             <property name="hibernate.connection.characterEncoding" value="UTF-8"/>

@@ -11,7 +11,9 @@
 <head>
     <title>注册界面</title>
 </head>
-
+<script type="text/javascript">
+    history.go(-1);
+</script>
 <body onload="loadProvince()">
 <div class="container">
     <h1 class="page-header">注册界面</h1>
@@ -142,7 +144,7 @@
             success: function (data) {
                 if (data == "success") {
 
-                    if (checkPassword() && checkRepassword() && checkNumber) {
+                    if (checkPassword() && checkRepassword() && checkNumber()) {
                         document.getElementById('form1').submit();
                     }
                 }

@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <html>
-
 <head>
     <title>商品详情</title>
 </head>
@@ -18,6 +17,7 @@
 <script src="/static/js/jquery-1.9.1.min.js"></script>
 <!-- 引入头部导航 -->
 <jsp:include flush="true" page="header.jsp"></jsp:include>
+<a onclick="javscript: window.history.go(-1)" style="cursor: hand;" href="###">返回</a><br/>
 商品详情
 
 <ul><img src="/static/picture/${flower.id}.jpg"/></ul>
@@ -67,9 +67,6 @@
             var data = $(":input").each(function () {
                 formData[this.name] = $("#" + this.name).val();
             });
-//            formData['flowersById'] = $("#" + 'flowersById').val();
-//            formData['amount'] = $("#" + 'amount').val();
-//            formData['userByUserId'] = $("#" + 'userByUserId').val();
             $.ajax({
                 async: false,
                 cache: false,

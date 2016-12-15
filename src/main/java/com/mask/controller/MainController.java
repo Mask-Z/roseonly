@@ -79,24 +79,14 @@ public class MainController {
 		map.put(name,amount);
 		request.setAttribute("map",map);
 		request.setAttribute("count",price*amount);
-//		Indent indent = new Indent();
-//		User user = userDao.findOne(Integer.valueOf(request.getParameter("userByUserId")));
-//		Flower flower = flowerDao.findOne(Integer.valueOf(request.getParameter("flowerByFlowerId")));
-//		indent.setUserByUserId(user);
-//		indent.setAddress(user.getCity());
-//		indent.setDealDetails(flower.getName() + "*" + request.getParameter("amount"));
-//		indent.setFlowerByFlowerId(flower);
-//		out(indent.getFlowerByFlowerId().getName());
-//		out(indent.getUserByUserId().getName());
-//		request.setAttribute("indent", indent);
 		return "deal2";
 	}
 
 	@RequestMapping(value = "/addCart", method = RequestMethod.POST)
 	@ResponseBody
 	public String addCart(HttpServletRequest request) {//先不用实体类接收
-		logger.info("cart....");
-		out("cart.......");
+		logger.info("addCart....");
+		out("addCart.......");
 
 		Cart cart = new Cart();
 		User user = (User) request.getSession().getAttribute("baseUser");
@@ -117,11 +107,7 @@ public class MainController {
 
 		}
 		cartDao.saveAndFlush(cart);
-//		if(null!=cart){
-//			logger.debug("save cart");
-//			cart.setAddtime(new Date());
-//			cartDao.saveAndFlush(cart);
-//		}
+		userDao.flush();
 		return "success";
 	}
 
@@ -132,15 +118,15 @@ public class MainController {
 	public String dealCart(HttpServletRequest request) {
 		cartDao.flush();
 		userDao.flush();
-		logger.info("dealCart.....");
+		out("dealCart.....");
 		User user = (User) request.getSession().getAttribute("baseUser");
 		List<Cart> carts = (List<Cart>) user.getCartsById();
-		Cart cart;
-//		List<Flower> flowerList;
+		out("该用户购物车id数量: "+carts.size());
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		if (carts != null && carts.size() > 0) {//把购物车中的商品和数量放到map中
 			out("取出购物车商品和数量...");
-			cart = carts.get(0);
+			for(Cart cart:carts){
+//			cart = carts.get(0);
 			String goods = cart.getGoods();
 			String[] arr1 = goods.split(",");
 			for (String str : arr1) {
@@ -151,7 +137,7 @@ public class MainController {
 					map.put(arr2[0], Integer.valueOf(arr2[1]));
 				}
 			}
-		}
+		}}
 		Double count = 0.0;
 		for (String key : map.keySet()) {
 			count = count + flowerDao.findFlowerByName(key).getPrice() * map.get(key);
@@ -160,11 +146,4 @@ public class MainController {
 		request.setAttribute("map", map);
 		return "deal2";
 	}
-//	@RequestMapping("/userManage")
-//	public String userManager(HttpServletRequest request){
-//		HttpSession session=request.getSession();
-//		User user= (User) session.getAttribute("baseUser");
-//		session.setAttribute("baseUser",userDao.findOne(user.getId()));//刷新用户信息
-//		return "userManage";
-//	}
 }
