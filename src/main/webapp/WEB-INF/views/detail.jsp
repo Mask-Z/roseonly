@@ -16,6 +16,8 @@
 
 <body>
 <script src="/static/js/jquery-1.9.1.min.js"></script>
+<!-- 引入头部导航 -->
+<jsp:include flush="true" page="header.jsp"></jsp:include>
 商品详情
 
 <ul><img src="/static/picture/${flower.id}.jpg"/></ul>
@@ -24,15 +26,16 @@
 <ul>剩余数量: ${flower.amount}</ul>
 <%--提交实体类报错400--%>
 <form action="/main/paying" method="post">
-    <input type="hidden" value="${baseUser}" id="userByUserId" name="userByUserId"/>
+    <input type="hidden" value="${baseUser.id}" id="userByUserId" name="userByUserId"/>
     <input type="hidden" value="${flower.id}" id="flowerByFlowerId" name="flowerByFlowerId">
-    <input type="hidden" value="${flowerList}" id="flowersById" name="flowersById">
+    <input type="hidden" value="${flower.price}" id="price" name="price">
+    <input type="hidden" value="${flower.name}" id="name" name="name">
     <input type="hidden" value="${flowerList.get(0).name}" id="flowerP" name="flowerP">
     <input id="min" name="min" type="button" value="-"/>
     <input id="amount" name="amount"  type="text" value="0"/>
     <input id="add" name="add" type="button" value="+"/>
     <p>总价：<label id="total"></label></p>
-    <br> <input type="submit" id="sub" name="sub" value="购买"/>
+    <br> <input type="submit" id="sub" name="sub" value="直接购买"/>
     <br> <input type="button" value="加入购物车" id="addCart" name="addCart" onclick="addToCart()">
 </form>
 <a href="/main/dealCart"><button>去购物车结算</button></a>

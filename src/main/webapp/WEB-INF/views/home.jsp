@@ -34,15 +34,15 @@
             <td id="list1">
                 <table style="border: 0px;" cellpadding="0" cellspacing="0">
                     <tr id="pic">
-                        <td><a href="/main/detail?id=1"> <img style="border: 0px;" alt="" src="/static/picture/bmg.jpg" /><br><h2 align="center">白玫瑰</h2></a></td>
-                        <td><img style="border: 0px;" alt="" src="/static/picture/heimg.jpg" /></td>
-                        <td><img style="border: 0px;" alt="" src="/static/picture/hmg.jpg" /></td>
-                        <td><a href="/static/picture/bmg.jpg"> <img style="border: 0px;" alt="" src="/static/picture/bmg.jpg" /><br><h2 align="center">白玫瑰</h2></a></td>
-                        <td><img style="border: 0px;" alt="" src="/static/picture/heimg.jpg" /></td>
-                        <td><img style="border: 0px;" alt="" src="/static/picture/hmg.jpg" /></td>
-                        <td><a href="/static/picture/bmg.jpg"> <img style="border: 0px;" alt="" src="/static/picture/bmg.jpg" /><br><h2 align="center">白玫瑰</h2></a></td>
-                        <td><img style="border: 0px;" alt="" src="/static/picture/heimg.jpg" /></td>
-                        <td><img style="border: 0px;" alt="" src="/static/picture/hmg.jpg" /></td>
+                        <td><a href="/main/detail?id=1"> <img style="border: 0px;" alt="" src="/static/picture/1.jpg" /><br><h2 align="center">白玫瑰</h2></a></td>
+                        <td><a href="/main/detail?id=2"> <img style="border: 0px;" alt="" src="/static/picture/2.jpg" /><br><h2 align="center">黑玫瑰</h2></a></td>
+                        <td><a href="/main/detail?id=3"> <img style="border: 0px;" alt="" src="/static/picture/3.jpg" /><br><h2 align="center">红玫瑰</h2></a></td>
+                        <td><a href="/main/detail?id=1"> <img style="border: 0px;" alt="" src="/static/picture/1.jpg" /><br><h2 align="center">白玫瑰</h2></a></td>
+                        <td><a href="/main/detail?id=2"> <img style="border: 0px;" alt="" src="/static/picture/2.jpg" /><br><h2 align="center">黑玫瑰</h2></a></td>
+                        <td><a href="/main/detail?id=3"> <img style="border: 0px;" alt="" src="/static/picture/3.jpg" /><br><h2 align="center">红玫瑰</h2></a></td>
+                        <td><a href="/main/detail?id=1"> <img style="border: 0px;" alt="" src="/static/picture/1.jpg" /><br><h2 align="center">白玫瑰</h2></a></td>
+                        <td><a href="/main/detail?id=2"> <img style="border: 0px;" alt="" src="/static/picture/2.jpg" /><br><h2 align="center">黑玫瑰</h2></a></td>
+                        <td><a href="/main/detail?id=3"> <img style="border: 0px;" alt="" src="/static/picture/3.jpg" /><br><h2 align="center">红玫瑰</h2></a></td>
                     </tr>
                 </table>
             </td>

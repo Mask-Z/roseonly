@@ -39,13 +39,6 @@ public class RegisterController {
     public String checkName(HttpServletRequest request) {
         out("checkName....");
         String name = request.getParameter("name");
-//        try {
-//            userDao.findIdByName(name);
-//        }catch (Exception e){
-//            return "success";
-//        }
-//        return "failed";
-
         String password = userDao.findPassWordByName(name);
         if (password!=null){
             return "failed";

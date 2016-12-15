@@ -69,21 +69,27 @@ public class MainController {
 
 	@RequestMapping(value = "/paying", method = RequestMethod.POST)
 	public String paying(HttpServletRequest request) {//支付页面
+		Double price= Double.valueOf(request.getParameter("price"));
+		String name=request.getParameter("name");
+		Integer amount= Integer.valueOf(request.getParameter("amount"));
 		out("paying......");
-		out("userByUserId: " + request.getParameter("userByUserId"));
-		out("flowerByFlowerId: " + request.getParameter("flowerByFlowerId"));
+		out("price: " + request.getParameter("price"));
 		out("amount: " + request.getParameter("amount"));
-		Indent indent = new Indent();
-		User user = userDao.findOne(Integer.valueOf(request.getParameter("userByUserId")));
-		Flower flower = flowerDao.findOne(Integer.valueOf(request.getParameter("flowerByFlowerId")));
-		indent.setUserByUserId(user);
-		indent.setAddress(user.getCity());
-		indent.setDealDetails(flower.getName() + "*" + request.getParameter("amount"));
-		indent.setFlowerByFlowerId(flower);
-		out(indent.getFlowerByFlowerId().getName());
-		out(indent.getUserByUserId().getName());
-		request.setAttribute("indent", indent);
-		return "deal";
+		Map<String,Integer> map=new HashMap<>();
+		map.put(name,amount);
+		request.setAttribute("map",map);
+		request.setAttribute("count",price*amount);
+//		Indent indent = new Indent();
+//		User user = userDao.findOne(Integer.valueOf(request.getParameter("userByUserId")));
+//		Flower flower = flowerDao.findOne(Integer.valueOf(request.getParameter("flowerByFlowerId")));
+//		indent.setUserByUserId(user);
+//		indent.setAddress(user.getCity());
+//		indent.setDealDetails(flower.getName() + "*" + request.getParameter("amount"));
+//		indent.setFlowerByFlowerId(flower);
+//		out(indent.getFlowerByFlowerId().getName());
+//		out(indent.getUserByUserId().getName());
+//		request.setAttribute("indent", indent);
+		return "deal2";
 	}
 
 	@RequestMapping(value = "/addCart", method = RequestMethod.POST)
@@ -125,11 +131,12 @@ public class MainController {
 	@RequestMapping("dealCart")
 	public String dealCart(HttpServletRequest request) {
 		cartDao.flush();
+		userDao.flush();
 		logger.info("dealCart.....");
 		User user = (User) request.getSession().getAttribute("baseUser");
 		List<Cart> carts = (List<Cart>) user.getCartsById();
 		Cart cart;
-		List<Flower> flowerList;
+//		List<Flower> flowerList;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		if (carts != null && carts.size() > 0) {//把购物车中的商品和数量放到map中
 			out("取出购物车商品和数量...");

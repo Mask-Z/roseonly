@@ -62,6 +62,33 @@ public class IndentController {
 		request.setAttribute("msg","已成功付款,请等待收货");
 		return "home";
 	}
+
+	/**
+	 * 直接支付时,保存用户订单
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "saveIndent2", method = RequestMethod.POST)
+	public String saveIndent2(String address, Integer postStyle, Integer payStyle, Double totalMoney,String dealDetails, HttpServletRequest request) {
+		out("saveIndent...");
+		out("address..." + address);
+		Indent indent=new Indent();
+		indent.setAddress(address);
+		indent.setDealDetails(dealDetails);
+		indent.setPayDate(new Date());
+		indent.setPostStyle(postStyle);
+		indent.setPayStyle(payStyle);
+		indent.setTotalMoney(totalMoney);
+		indent.setUserByUserId((User) request.getSession().getAttribute("baseUser"));
+		indent.setState(1);//设置订单初始状态为1,代表为出库
+		indentDao.saveAndFlush(indent);
+		//移除购物车信息
+		cartDao.delete(((User) request.getSession().getAttribute("baseUser")).getCartsById());
+		cartDao.flush();
+		request.setAttribute("msg","已成功付款,请等待收货");
+		return "home";
+	}
+
 	@RequestMapping("/indents/showIndent/{id}")
 	public String showIndent(@PathVariable("id")Integer userId, ModelMap modelMap){
 		out("showIndent().......");
@@ -83,7 +110,7 @@ public class IndentController {
 		String deal_details=indent.getDealDetails();
 		String[] detailsArr=deal_details.split(",");
 		for(String arr:detailsArr){
-			String[] arr2=arr.split("/*");
+			String[] arr2=arr.split("\\*");
 			if(arr2.length==2){
 				String flowerName=arr2[0];
 				int flowerNumber= Integer.parseInt(arr2[1]);
@@ -96,4 +123,12 @@ public class IndentController {
 
 		return "redirect:/indent/indents/showIndent/"+userId;
 	}
+
+//	public static void main(String[] args) {
+//		String str="白玫瑰*2";
+//		String[] arr=str.split("\\*");
+//		for(String s:arr){
+//			System.out.println(s);
+//		}
+//	}
 }
