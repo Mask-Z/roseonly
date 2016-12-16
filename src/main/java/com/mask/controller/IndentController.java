@@ -1,5 +1,6 @@
 package com.mask.controller;
 
+import com.mask.bean.Cart;
 import com.mask.bean.Flower;
 import com.mask.bean.Indent;
 import com.mask.bean.User;
@@ -57,7 +58,9 @@ public class IndentController {
 		indent.setState(1);//设置订单初始状态为1,代表为出库
 		indentDao.saveAndFlush(indent);
 		//移除购物车信息
-		cartDao.delete(((User) request.getSession().getAttribute("baseUser")).getCartsById());
+		User user=(User) request.getSession().getAttribute("baseUser");
+		User newUser=userDao.getOne(user.getId());
+		cartDao.delete(newUser.getCartsById());
 		cartDao.flush();
 		userDao.flush();
 		request.setAttribute("msg","已成功付款,请等待收货");
@@ -84,7 +87,9 @@ public class IndentController {
 		indent.setState(1);//设置订单初始状态为1,代表为出库
 		indentDao.saveAndFlush(indent);
 		//移除购物车信息
-		cartDao.delete(((User) request.getSession().getAttribute("baseUser")).getCartsById());
+		User user=(User) request.getSession().getAttribute("baseUser");
+		User newUser=userDao.getOne(user.getId());
+		cartDao.delete(newUser.getCartsById());
 		cartDao.flush();
 		userDao.flush();
 		out("我是第二类..");

@@ -11,9 +11,6 @@
 <head>
     <title>注册界面</title>
 </head>
-<script type="text/javascript">
-    history.go(-1);
-</script>
 <body onload="loadProvince()">
 <div class="container">
     <h1 class="page-header">注册界面</h1>
@@ -89,43 +86,11 @@
                 </select> &nbsp;&nbsp;
                 <select name="city">
                     <option value="">
-                        请选择城名
+                        请选择城市名
                     </option>
                 </select>
             </div>
-        </div>
-        <%--<div class="row">--%>
-        <%--<div class="btn btn-warning btn-lg col-sm-3">--%>
-        <%--<input type="submit"  onclick=" return checkRegister()">注册</input>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--用户名: <input type="text" name="name" id="name"/>--%>
-        <%--<br>--%>
-
-        <%--密 码:--%>
-        <%--<input type="password" name="password"/>--%>
-        <%--<br>--%>
-        <%--真实姓名: <input type="text" name="realname"/>--%>
-        <%--<br>--%>
-        <%--手机号码: <input type="text" name="number"/>--%>
-        <%--<br>--%>
-        <%--性别:--%>
-        <%--<input type="radio" name="gender" value="男">男</input>--%>
-        <%--<input type="radio" name="gender" value="女">女</input>--%>
-        <%--<br>--%>
-        <%--地址:<br>--%>
-        <%--<select name="province" onchange="cityName(this.selectedIndex)">--%>
-        <%--<option value="">--%>
-        <%--请选择省名--%>
-        <%--</option>--%>
-        <%--</select> &nbsp;&nbsp;--%>
-        <%--<select name="city">--%>
-        <%--<option value="">--%>
-        <%--请选择城名--%>
-        <%--</option>--%>
-        <%--</select><br>--%>
-        <%--<input type="submit" value="注册">--%>
-        <%--<br>--%>
+        </div><br/><br/><br/>
         <div class="row"><a class="btn btn-warning btn-lg col-sm-3" onclick="checkRegister()">注册</a></div>
     </form>
 </div>
