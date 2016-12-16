@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="base.jsp" %>
 <html>
 <head>
     <meta http-equiv="pragma" content="no-cache">
@@ -17,72 +18,120 @@
     <title>首页</title>
 
 </head>
+<style type="text/css">
+    body {
+        background-color: #EEDDEE;
+    }
+
+</style>
 <style>
-    .picutre_many img{width:200px; height:150px;}
+    .picutre_many img {
+        width: 200px;
+        height: 150px;
+    }
 </style>
 <script src=""></script>
 <script>
     function showMsg() {
-        var msg='<%=request.getAttribute("msg")%>';
-        if(msg!=null&&msg!='null'&&msg!=''){
+        var msg = '<%=request.getAttribute("msg")%>';
+        if (msg != null && msg != 'null' && msg != '') {
             alert(msg);
         }
     }
 </script>
 <style>
-    #Layer1{
+    #Layer1 {
         /*background-image: url("/static/picture/bgp.jpg");*/
 
-
-        width:200px;
-        height:100px;
-        color:#fff;
-        font-size:12px;
-        border:10px dotted #333;
-        padding:10px;
-        background: url("/static/picture/bgm.jpg");
+        /*width: 200px;*/
+        /*height: 100px;*/
+        /*color: #fff;*/
+        /*font-size: 12px;*/
+        /*border: 10px dotted #333;*/
+        /*padding: 10px;*/
+        background: url("/static/picture/heise.jpg") no-repeat;
+        width: inherit;
+        height: 100%;
 
     }
 </style>
-<body onload="showMsg()" >
+<body onload="showMsg()">
 
 <c:if test="${baseUser.role==1}">
-    <div id="Layer1">
-        <a id="user_center" href="userLists" title="用户管理">用户管理&nbsp;</a><br>
-        <a id="logout" href="/main/logout" title="退出">退出&nbsp;</a>
-        <%--<img src="/static/picture/bgm.jpg" height="100%" width="100%"/>--%>
+    <div id="Layer1" align="center">
+        <br><br><br><br><br><br><br><br><br>
+        <a id="user_center" href="userLists" title="用户管理"><h2>用户管理</h2>&nbsp;</a><br>
+        <a id="logout" href="/main/logout" title="退出"><h2>退出</h2>&nbsp;</a>
+            <%--<img src="/static/picture/bgm.jpg" height="100%" width="100%"/>--%>
     </div>
 
 </c:if>
 <c:if test="${baseUser.role==0}">
-<!-- 引入头部导航 -->
-<jsp:include flush="true" page="header.jsp"></jsp:include>
-<div id="list" class=" picutre_many"
-     style="overflow: hidden; height: 250px; width: 800px; margin: 0 auto;">
-    <table cellspacing="0" cellpadding="0"
-           style="width: 680px; border: 0px;">
+    <!-- 引入头部导航 -->
+    <jsp:include flush="true" page="header.jsp"></jsp:include>
+    <h3 align="center">本店热销</h3>
+    <div id="list" class=" picutre_many"
+         style="overflow: hidden; height: 250px; width: 800px; margin: 0 auto;">
+        <table cellspacing="0" cellpadding="0"
+               style="width: 680px; border: 0px;">
+            <tr>
+                <td id="list1">
+                    <table style="border: 0px;" cellpadding="0" cellspacing="0">
+                        <tr id="pic">
+                            <td><a href="/main/detail?id=1"> <img style="border: 0px;" alt=""
+                                                                  src="/static/picture/1.jpg"/><br>
+                                <h2 align="center">白玫瑰</h2></a></td>
+                            <td><a href="/main/detail?id=2"> <img style="border: 0px;" alt=""
+                                                                  src="/static/picture/2.jpg"/><br>
+                                <h2 align="center">黑玫瑰</h2></a></td>
+                            <td><a href="/main/detail?id=3"> <img style="border: 0px;" alt=""
+                                                                  src="/static/picture/3.jpg"/><br>
+                                <h2 align="center">红玫瑰</h2></a></td>
+                            <td><a href="/main/detail?id=1"> <img style="border: 0px;" alt=""
+                                                                  src="/static/picture/1.jpg"/><br>
+                                <h2 align="center">白玫瑰</h2></a></td>
+                            <td><a href="/main/detail?id=2"> <img style="border: 0px;" alt=""
+                                                                  src="/static/picture/2.jpg"/><br>
+                                <h2 align="center">黑玫瑰</h2></a></td>
+                            <td><a href="/main/detail?id=3"> <img style="border: 0px;" alt=""
+                                                                  src="/static/picture/3.jpg"/><br>
+                                <h2 align="center">红玫瑰</h2></a></td>
+                            <td><a href="/main/detail?id=1"> <img style="border: 0px;" alt=""
+                                                                  src="/static/picture/1.jpg"/><br>
+                                <h2 align="center">白玫瑰</h2></a></td>
+                            <td><a href="/main/detail?id=2"> <img style="border: 0px;" alt=""
+                                                                  src="/static/picture/2.jpg"/><br>
+                                <h2 align="center">黑玫瑰</h2></a></td>
+                            <td><a href="/main/detail?id=3"> <img style="border: 0px;" alt=""
+                                                                  src="/static/picture/3.jpg"/><br>
+                                <h2 align="center">红玫瑰</h2></a></td>
+                        </tr>
+                    </table>
+                </td>
+                <td id="list2"></td>
+            </tr>
+        </table>
+    </div>
+    <form action="/flowerSearch" method="post">
+        <input type="text" value="${search}" name="search" id="search" placeholder="搜索鲜花">
+        <input type="submit" value="搜索">
+    </form>
+    <table class="table table-bordered table-striped" align="center">
         <tr>
-            <td id="list1">
-                <table style="border: 0px;" cellpadding="0" cellspacing="0">
-                    <tr id="pic">
-                        <td><a href="/main/detail?id=1"> <img style="border: 0px;" alt="" src="/static/picture/1.jpg" /><br><h2 align="center">白玫瑰</h2></a></td>
-                        <td><a href="/main/detail?id=2"> <img style="border: 0px;" alt="" src="/static/picture/2.jpg" /><br><h2 align="center">黑玫瑰</h2></a></td>
-                        <td><a href="/main/detail?id=3"> <img style="border: 0px;" alt="" src="/static/picture/3.jpg" /><br><h2 align="center">红玫瑰</h2></a></td>
-                        <td><a href="/main/detail?id=1"> <img style="border: 0px;" alt="" src="/static/picture/1.jpg" /><br><h2 align="center">白玫瑰</h2></a></td>
-                        <td><a href="/main/detail?id=2"> <img style="border: 0px;" alt="" src="/static/picture/2.jpg" /><br><h2 align="center">黑玫瑰</h2></a></td>
-                        <td><a href="/main/detail?id=3"> <img style="border: 0px;" alt="" src="/static/picture/3.jpg" /><br><h2 align="center">红玫瑰</h2></a></td>
-                        <td><a href="/main/detail?id=1"> <img style="border: 0px;" alt="" src="/static/picture/1.jpg" /><br><h2 align="center">白玫瑰</h2></a></td>
-                        <td><a href="/main/detail?id=2"> <img style="border: 0px;" alt="" src="/static/picture/2.jpg" /><br><h2 align="center">黑玫瑰</h2></a></td>
-                        <td><a href="/main/detail?id=3"> <img style="border: 0px;" alt="" src="/static/picture/3.jpg" /><br><h2 align="center">红玫瑰</h2></a></td>
-                    </tr>
-                </table>
-            </td>
-            <td id="list2"></td>
-        </tr>
-    </table>
-</div>
-</c:if>
+            <th>名称</th>
+            <th>价格</th>
+            <th>数量</th>
 
+        </tr>
+        <c:forEach items="${flowerList}" var="flower">
+            <tr>
+                <td><a href="/main/detail?id=${flower.id}"> ${flower.name}</a></td>
+                <td>${flower.price}</td>
+                <td>${flower.amount}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</c:if>
 
 <script type="text/javascript">
     /*图片滚动效果*/
@@ -99,10 +148,10 @@
     }
     var MyMarpic = setInterval(Marqueepic, speedpic);
 
-    document.getElementById("list").onmouseover = function() {
+    document.getElementById("list").onmouseover = function () {
         clearInterval(MyMarpic);
     }
-    document.getElementById("list").onmouseout = function() {
+    document.getElementById("list").onmouseout = function () {
         MyMarpic = setInterval(Marqueepic, speedpic);
     }
 </script>

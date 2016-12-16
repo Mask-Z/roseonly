@@ -15,6 +15,17 @@
 <body>
 <div class="container">
     <h1>${user.name}的订单</h1>
+    <c:if test="${baseUser.role==1}">
+    <form id="search" action="/indent/showByFlag" method="post">
+        <input type="hidden" id="userId" name="userId" value="${user.id}">
+        <select id="flag" name="flag">
+            <option value="0"  <c:if test="${flag=='0'}"> selected</c:if> >全部订单</option>
+            <option value="1"  <c:if test="${flag=='1'}"> selected</c:if> >交易完成</option>
+            <option value="2"  <c:if test="${flag=='2'}"> selected</c:if> >未出库</option>
+        </select>
+        <input type="submit" value="查询"/>
+    </form>
+    </c:if>
     <hr/>
     <c:if test="${! empty indentList}">
         <c:forEach items="${indentList}" var="indent">
@@ -52,12 +63,12 @@
                 <tr>
                     <th>订单状态</th>
                     <c:if test="${baseUser.role==0}">
-                    <td>
-                        <c:if test="${indent.state==1}">未出库</c:if>
-                        <c:if test="${indent.state==2}">已收货</c:if>
-                    </td>
+                        <td>
+                            <c:if test="${indent.state==1}">未出库</c:if>
+                            <c:if test="${indent.state==2}">已收货</c:if>
+                        </td>
                     </c:if>
-                    <%--管理员--%>
+                        <%--管理员--%>
                     <c:if test="${baseUser.role==1}">
                         <td>
                             <c:if test="${indent.state==1}">已付款,<a href="/indent/updateState/${user.id}/${indent.id}">确认出库</a></c:if>
@@ -66,7 +77,9 @@
                     </c:if>
                 </tr>
 
-            </table><br/><hr/>
+            </table>
+            <br/>
+            <hr/>
         </c:forEach>
     </c:if>
 </div>
