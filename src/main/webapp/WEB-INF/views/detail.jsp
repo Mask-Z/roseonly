@@ -12,15 +12,20 @@
 <head>
     <title>商品详情</title>
 </head>
+<style type="text/css">
+    body {
+        background-color: #EEDDEE;
+    }
 
+</style>
 <body>
 <script src="/static/js/jquery-1.9.1.min.js"></script>
 <!-- 引入头部导航 -->
 <jsp:include flush="true" page="header.jsp"></jsp:include>
 <a onclick="javscript: window.history.go(-1)" style="cursor: hand;" href="###">返回</a><br/>
-商品详情
+<h4 align="center"> 商品详情</h4>
 
-<ul><img src="/static/picture/${flower.id}.jpg"/></ul>
+<ul align="center"><img src="/static/picture/${flower.id}.jpg" /></ul>
 <ul>商品名称: ${flower.name}</ul>
 <ul> 价 格 : ${flower.price}</ul>
 <ul>剩余数量: ${flower.amount}</ul>
