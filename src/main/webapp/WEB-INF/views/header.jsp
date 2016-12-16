@@ -12,7 +12,7 @@
 		<div class="right">
 			<c:if test="${baseUser!= null}">
 				<a id="user_center" href="userLists" title="个人中心">个人中心&nbsp;|</a>
-				<a id="logout" href="/main/logout" title="注销">&nbsp;注销</a>
+				<a id="logout" href="/main/logout" title="注销">注销&nbsp;|</a>
 				<a href="/main/dealCart" title="购物车" class="right-shop"><span id="cartNum">购物车</span></a>
 			</c:if>
 			<%--<c:if test="${user.userId == null}">--%>

@@ -29,7 +29,32 @@
         }
     }
 </script>
-<body onload="showMsg()">
+<style>
+    #Layer1{
+        /*background-image: url("/static/picture/bgp.jpg");*/
+
+
+        width:200px;
+        height:100px;
+        color:#fff;
+        font-size:12px;
+        border:10px dotted #333;
+        padding:10px;
+        background: url("/static/picture/bgm.jpg");
+
+    }
+</style>
+<body onload="showMsg()" >
+
+<c:if test="${baseUser.role==1}">
+    <div id="Layer1">
+        <a id="user_center" href="userLists" title="用户管理">用户管理&nbsp;</a><br>
+        <a id="logout" href="/main/logout" title="退出">退出&nbsp;</a>
+        <%--<img src="/static/picture/bgm.jpg" height="100%" width="100%"/>--%>
+    </div>
+
+</c:if>
+<c:if test="${baseUser.role==0}">
 <!-- 引入头部导航 -->
 <jsp:include flush="true" page="header.jsp"></jsp:include>
 <div id="list" class=" picutre_many"
@@ -56,7 +81,7 @@
         </tr>
     </table>
 </div>
-
+</c:if>
 
 
 <script type="text/javascript">
