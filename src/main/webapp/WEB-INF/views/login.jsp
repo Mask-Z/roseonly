@@ -25,6 +25,7 @@
         </div>
         <% session.removeAttribute("msg");%>
     </c:if>
+
     <form action="/sysLogin" check="/checkUser" method="post">
         <div class="row">
             <div class="form-group col-sm-7">
@@ -44,20 +45,20 @@
         <div class="row"><a class="btn btn-danger btn-lg col-sm-3" href="/register">注册</a>
         </div>
     </form>
-
+<br><br><br><br>
     <div class="footer">
-        <ul>
-            <a href="#"><li class="about-us">关于我们</li></a>
-            <li>|</li>
-            <a href="#"><li>常见问题</li></a>
-            <li>|</li>
-            <a href="#"><li>加入我们</li></a>
-            <li>|</li>
-            <a href="#"><li>退换条例</li></a>
-            <li>|</li>
-            <a href="#"><li>新浪微博</li></a>
-        </ul>
-        <span>常州大学信息科学与工程学院</span>
+           <div >
+            <a href="#"> 关于我们&nbsp</a>
+            |&nbsp
+            <a href="#">常见问题&nbsp</a>
+            |&nbsp
+            <a href="#">加入我们&nbsp</a>
+            |&nbsp
+            <a href="#">退换条例&nbsp</a>
+            |&nbsp
+            <a href="#">新浪微博</a>
+</div><br>
+        <div ><h4>常州大学信息科学与工程学院</h4></div>
     </div>
 </div>
 

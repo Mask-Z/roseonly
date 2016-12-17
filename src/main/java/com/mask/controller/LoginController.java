@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 import static com.mask.utils.Util.out;
 
@@ -54,6 +54,10 @@ public class LoginController {
 
     @RequestMapping(value = "sysLogin", method = RequestMethod.GET)
     public String sysLogin(ModelMap modelMap) {
+        modelMap.put("color","#419641");
+        ResourceBundle rb = ResourceBundle.getBundle("color");
+        String color=rb.getString("color");
+        out("####"+color);
         List<Flower> flowerList=flowerDao.findAll();
         modelMap.addAttribute("flowerList",flowerList);
         return "home";
@@ -71,5 +75,49 @@ public class LoginController {
         modelMap.addAttribute("search",search);
         modelMap.addAttribute("flowerList",flowerList);
         return "home";
+    }
+    @RequestMapping(value = "updateColor",method = RequestMethod.POST)
+    @ResponseBody
+    public String updateColor(HttpServletRequest request){
+        String color=request.getParameter("color");
+        writeProperties(color);
+        return "success";
+    }
+    public void loadProperties() {
+        Properties properties = new Properties();
+        InputStream input = null;
+        try {
+            input = new FileInputStream("color.properties");//加载Java项目根路径下的配置文件
+            properties.load(input);// 加载属性文件
+            System.out.println("color:" + properties.getProperty("color"));
+        } catch (IOException io) {
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    public void writeProperties(String color) {
+        Properties properties = new Properties();
+        OutputStream output = null;
+        try {
+            output = new FileOutputStream("color.properties");
+            properties.setProperty("color", color);
+            properties.store(output,"last modify" + new Date().toString());
+        } catch (IOException io) {
+            io.printStackTrace();
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

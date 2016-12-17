@@ -1,26 +1,26 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div class="foot-nav">
-    <ul>
+<div >
+    <%--<ul>--%>
         <a href="#">
-            <li class="about-us">关于我们</li>
+           关于我们
         </a>
-        <li>|</li>
+        |
         <a href="#">
-            <li>常见问题</li>
+            常见问题
         </a>
-        <li>|</li>
+        |
         <a href="#">
-            <li>加入我们</li>
+            加入我们
         </a>
-        <li>|</li>
+        |
         <a href="#">
-            <li>退换条例</li>
+            退换条例
         </a>
-        <li>|</li>
+        |
         <a href="#">
-            <li>新浪微博</li>
+            新浪微博
         </a>
-    </ul>
+    <%--</ul>--%>
     <span>常州大学信息科学与工程学院</span>
 </div>
