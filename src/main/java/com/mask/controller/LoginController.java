@@ -4,6 +4,8 @@ import com.mask.bean.Flower;
 import com.mask.bean.User;
 import com.mask.dao.FlowerDaoI;
 import com.mask.dao.UserDaoI;
+import com.mask.utils.MyControl;
+import com.mask.utils.PropertiesUtils;
 import com.mask.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,11 +55,18 @@ public class LoginController {
     }
 
     @RequestMapping(value = "sysLogin", method = RequestMethod.GET)
-    public String sysLogin(ModelMap modelMap) {
-        modelMap.put("color","#419641");
-        ResourceBundle rb = ResourceBundle.getBundle("color");
-        String color=rb.getString("color");
-        out("####"+color);
+    public String sysLogin(ModelMap modelMap,HttpServletRequest request) {
+//        ResourceBundle.clearCache();
+//
+//        ResourceBundle rb = ResourceBundle.getBundle("color");
+//        MyControl.addNeedsReloadBaseName("color");
+//        ResourceBundle rb = ResourceBundle.getBundle("color", MyControl.getControl());
+//        String color=rb.getString("color");
+        //读取配置文件,修改主题(不从缓存中获取)
+        Properties properties=PropertiesUtils.loadProps("D:\\WorkSpace\\roseonly\\src\\main\\resources\\color.properties");
+        String color=properties.getProperty("color");
+        request.getSession().setAttribute("color",color);
+        out("####:  "+color);
         List<Flower> flowerList=flowerDao.findAll();
         modelMap.addAttribute("flowerList",flowerList);
         return "home";
@@ -78,34 +87,18 @@ public class LoginController {
     }
     @RequestMapping(value = "updateColor",method = RequestMethod.POST)
     @ResponseBody
-    public String updateColor(HttpServletRequest request){
-        String color=request.getParameter("color");
+    public String updateColor(HttpServletRequest request,String color){
+//        String color2=request.getParameter("color");
+        out("接收"+":  "+color);
         writeProperties(color);
         return "success";
     }
-    public void loadProperties() {
-        Properties properties = new Properties();
-        InputStream input = null;
-        try {
-            input = new FileInputStream("color.properties");//加载Java项目根路径下的配置文件
-            properties.load(input);// 加载属性文件
-            System.out.println("color:" + properties.getProperty("color"));
-        } catch (IOException io) {
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+
     public void writeProperties(String color) {
         Properties properties = new Properties();
         OutputStream output = null;
         try {
-            output = new FileOutputStream("color.properties");
+            output = new FileOutputStream("D:\\WorkSpace\\roseonly\\src\\main\\resources\\color.properties");
             properties.setProperty("color", color);
             properties.store(output,"last modify" + new Date().toString());
         } catch (IOException io) {
