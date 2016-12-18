@@ -37,8 +37,12 @@
             <!--<mvc:mapping path="/*"/>-->
             <!--<bean id="loginInterceptor" class="com.mask.interceptor.LoginInterceptor">-->
                 <!--<property name="excludeUrls">-->
-                    <!--<value>/index</value>-->
-                    <!--&lt;!&ndash;<value>/</value>&ndash;&gt;-->
+                    <!--<list>-->
+                        <!--<value>/index</value>-->
+                        <!--<value>/login</value>-->
+                        <!--<value>/register</value>-->
+                    <!--</list>-->
+
                 <!--</property>-->
             <!--</bean>-->
         <!--</mvc:interceptor>-->

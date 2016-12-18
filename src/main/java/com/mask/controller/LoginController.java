@@ -63,6 +63,9 @@ public class LoginController {
 //        ResourceBundle rb = ResourceBundle.getBundle("color", MyControl.getControl());
 //        String color=rb.getString("color");
         //读取配置文件,修改主题(不从缓存中获取)
+//        if(request.getAttribute("msg")!=null&&request.getAttribute("msg")!=""){
+//            request.setAttribute("msg", request.getAttribute("msg"));
+//        }
         Properties properties=PropertiesUtils.loadProps("D:\\WorkSpace\\roseonly\\src\\main\\resources\\color.properties");
         String color=properties.getProperty("color");
         request.getSession().setAttribute("color",color);

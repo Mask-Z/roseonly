@@ -47,6 +47,10 @@
                     <td>${indent.address}</td>
                 </tr>
                 <tr>
+                    <th>交易日期</th>
+                    <td>${indent.payDate}</td>
+                </tr>
+                <tr>
                     <th>配送方式</th>
                     <td>
                         <c:if test="${indent.postStyle==1}">顺丰快递</c:if>

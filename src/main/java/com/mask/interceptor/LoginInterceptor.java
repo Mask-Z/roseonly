@@ -32,7 +32,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             }
         }
         HttpSession session = request.getSession();
-        if (null != session.getAttribute("login")) {
+        if (null != session.getAttribute("baseUser")) {
             return true;
         } else {
             out("进入loginInterceptor........");

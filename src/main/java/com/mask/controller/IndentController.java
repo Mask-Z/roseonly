@@ -65,6 +65,8 @@ public class IndentController {
 		cartDao.flush();
 		userDao.flush();
 		request.setAttribute("msg", "已成功付款,请等待收货");
+		List<Flower> flowerList=flowerDao.findAll();
+		request.setAttribute("flowerList",flowerList);
 		return "home";
 	}
 
@@ -95,6 +97,8 @@ public class IndentController {
 		userDao.flush();
 		out("我是第二类..");
 		request.setAttribute("msg", "已成功付款,请等待收货");
+		List<Flower> flowerList=flowerDao.findAll();
+		request.setAttribute("flowerList",flowerList);
 		return "home";
 	}
 
